@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title id="doc-title">Жекови-Тенево ЕООД | Земеделие в Ямболска област</title>
+<meta name="description" content="Жекови-Тенево ЕООД — производство и търговия със зърнени култури в община Тунджа, област Ямбол." />
+<link rel="icon" type="image/png" href="img/JekoviLogoFinal.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+<style>
+  :root{
+    --white:#FFFFFF;
+    --bg:#F1F5E9;
+    --ink:#182219;
+    --muted:#48583F;
+    --green-dark:#213D24;
+    --green:#548A2E;
+    --green-light:#8FC94E;
+    --gold:#F2BC2E;
+    --gold-dark:#C98F0F;
+    --line: rgba(24,34,25,0.14);
+    --shadow: 0 12px 32px rgba(24,34,25,0.10);
+    --shadow-lift: 0 20px 44px rgba(24,34,25,0.18);
+    --radius: 16px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    overflow-x:hidden;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', Arial, sans-serif;
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Sora', Arial, sans-serif;
+    color:var(--green-dark);
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3.5rem);}
+  ::selection{background:var(--green-light); color:var(--green-dark);}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:1000;
+    background:rgba(241,245,233,0.78);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, box-shadow .3s ease;
+  }
+  header.scrolled{border-color:var(--line); box-shadow:0 4px 24px rgba(30,42,28,.06);}
+  .nav-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 0;}
+  .brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;}
+  .brand img{height:46px;width:auto;}
+  .brand-text{font-family:'Sora',sans-serif;font-weight:700;font-size:1.1rem;color:var(--green-dark);}
+
+  nav.links{display:flex;align-items:center;gap:2.1rem;}
+  .nav-link{
+    color:var(--ink); text-decoration:none; font-size:.98rem; font-weight:500;
+    position:relative; padding:.2rem 0;
+  }
+  .nav-link::after{
+    content:''; position:absolute; left:0; bottom:-2px; width:0; height:2px;
+    background:var(--gold-dark); transition:width .25s ease;
+  }
+  .nav-link:hover::after{width:100%;}
+  .lang-btn{
+    background:var(--green-dark); cursor:pointer; font-family:'Sora',sans-serif; font-weight:600; font-size:.82rem;
+    border:none; color:var(--white); border-radius:999px; padding:.5rem 1.15rem; letter-spacing:.03em;
+    transition:background .2s, transform .2s;
+  }
+  .lang-btn:hover{background:var(--green); transform:translateY(-1px);}
+  .menu-toggle{
+    display:none; background:none; border:none; cursor:pointer; width:36px; height:28px; position:relative; padding:0;
+  }
+  .menu-toggle span{
+    position:absolute; left:0; width:100%; height:2.5px; background:var(--green-dark); border-radius:2px;
+    transition:transform .3s ease, opacity .3s ease;
+  }
+  .menu-toggle span:nth-child(1){top:2px;}
+  .menu-toggle span:nth-child(2){top:12px;}
+  .menu-toggle span:nth-child(3){top:22px;}
+  .menu-toggle.open span:nth-child(1){transform:translateY(10px) rotate(45deg);}
+  .menu-toggle.open span:nth-child(2){opacity:0;}
+  .menu-toggle.open span:nth-child(3){transform:translateY(-10px) rotate(-45deg);}
+
+  @media(max-width:900px){
+    nav.links{
+      position:fixed; inset:0; height:100dvh; width:100%;
+      background:var(--white); flex-direction:column; align-items:flex-start; justify-content:center;
+      padding:2rem clamp(1.5rem,8vw,3rem); gap:1.8rem;
+      opacity:0; visibility:hidden; transform:translateY(-8px);
+      transition:opacity .3s ease, transform .3s ease, visibility .3s;
+    }
+    nav.links.open{opacity:1; visibility:visible; transform:none;}
+    nav.links .nav-link{font-size:1.6rem; font-family:'Sora',sans-serif; font-weight:600;}
+    nav.links .lang-btn{margin-top:.5rem;}
+    .menu-toggle{display:block;}
+  }
+
+  /* ---------- Hero ---------- */
+  #home{position:relative;}
+  .hero-wrap{
+    display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:3rem;
+    padding:clamp(2.5rem,7vw,5.5rem) 0 clamp(3rem,7vw,6rem);
+  }
+  @media(max-width:960px){
+    .hero-wrap{grid-template-columns:1fr; gap:2.5rem; padding-top:2rem;}
+  }
+  .hero-text h1{font-size:clamp(2.1rem,4.2vw,3.4rem); font-weight:800; line-height:1.08;}
+  .hero-text h1 span{color:var(--green);}
+  .hero-text p{color:var(--muted); font-size:1.15rem; margin-top:1.1rem; max-width:480px;}
+  .btn-primary{
+    display:inline-flex; align-items:center; gap:.5rem; margin-top:1.9rem; background:var(--green-dark); color:var(--white);
+    text-decoration:none; font-weight:600; font-family:'Sora',sans-serif; padding:.9rem 1.7rem; border-radius:999px;
+    transition:background .2s, transform .2s, box-shadow .2s; box-shadow:0 10px 24px rgba(40,77,43,.22);
+  }
+  .btn-primary:hover{background:var(--green); transform:translateY(-2px); box-shadow:0 14px 30px rgba(40,77,43,.28);}
+
+  .hero-media{position:relative; border-radius:28px; overflow:hidden; aspect-ratio:4/3.2; box-shadow:var(--shadow-lift);}
+  .hero-media .bg-slide{position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transition:opacity 1.4s ease;}
+  .hero-media .bg-slide.active{opacity:1;}
+  .hero-media::after{content:'';position:absolute; inset:0; background:linear-gradient(200deg, rgba(93,154,52,.18), rgba(30,42,28,.35) 85%);}
+  .hero-chip{
+    position:absolute; left:1.25rem; bottom:1.25rem; z-index:2; background:var(--white); border-radius:16px;
+    padding:1rem 1.3rem; box-shadow:var(--shadow); display:flex; align-items:center; gap:.8rem;
+  }
+  .hero-chip .num{font-family:'Sora',sans-serif; font-weight:800; font-size:1.5rem; color:var(--green-dark);}
+  .hero-chip .lbl{font-size:.82rem; color:var(--muted); line-height:1.2;}
+
+  /* ---------- Sections ---------- */
+  main section{padding:clamp(3.5rem,7vw,6rem) 0;}
+  .section-head{display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; margin-bottom:2.5rem; flex-wrap:wrap;}
+  .badge{
+    display:inline-block; background:rgba(84,138,46,.16); color:var(--green-dark); font-weight:700; font-size:.82rem;
+    padding:.35rem .9rem; border-radius:999px; margin-bottom:.9rem;
+  }
+  h2.section-title{font-size:clamp(1.7rem,3vw,2.35rem); font-weight:700;}
+
+  /* ---------- About ---------- */
+  #about{background:var(--white); border-radius:32px; margin:0 clamp(1rem,4vw,3rem); box-shadow:var(--shadow);}
+  .stats-row{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:3rem;
+  }
+  @media(max-width:700px){.stats-row{grid-template-columns:1fr;}}
+  .stat{
+    background:var(--bg); border-radius:18px; padding:1.6rem 1.6rem; border:1px solid var(--line);
+  }
+  .stat-num{font-family:'Sora',sans-serif; font-size:2rem; font-weight:800; color:var(--green); display:block;}
+  .stat-label{font-size:.92rem; color:var(--muted);}
+
+  .about-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:3rem; align-items:start;}
+  @media(max-width:900px){.about-grid{grid-template-columns:1fr;}}
+  .about-block{padding:1.5rem 0; border-bottom:1px solid var(--line);}
+  .about-block:last-child{border-bottom:none;}
+  .about-block h3{font-size:1.12rem; font-weight:700; margin-bottom:.55rem; display:flex; align-items:center; gap:.65rem;}
+  .about-block h3 i{
+    color:var(--green-dark); font-size:1.05rem; background:var(--green-light); width:34px; height:34px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .about-block p{color:var(--muted); margin:0;}
+
+  .about-media img{border-radius:20px; height:280px; object-fit:cover; width:100%; margin-bottom:1.5rem; box-shadow:var(--shadow);}
+  .highlights{list-style:none; margin:0; padding:0; display:grid; gap:.6rem;}
+  .highlights li{
+    display:flex; gap:.85rem; align-items:flex-start; background:var(--bg); border-radius:14px; padding:.85rem 1rem; color:var(--ink);
+  }
+  .highlights i{color:var(--gold-dark); font-size:1.1rem; margin-top:.1rem;}
+
+  /* ---------- Card grids (services/products) ---------- */
+  .card-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr)); gap:1.4rem;}
+  .card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:1.9rem 1.7rem;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .card:hover{transform:translateY(-5px); box-shadow:var(--shadow-lift);}
+  .card i{
+    width:48px; height:48px; border-radius:13px; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, var(--green-light), var(--green)); color:var(--white); font-size:1.35rem; margin-bottom:1.1rem;
+  }
+  .card h3{font-size:1.1rem; font-weight:700; margin-bottom:.5rem;}
+  .card p{margin:0; color:var(--muted); font-size:.96rem;}
+
+  /* ---------- Contacts ---------- */
+  #contacts{background:var(--green-dark); color:var(--white); border-radius:32px; margin:0 clamp(1rem,4vw,3rem);}
+  #contacts h2.section-title, #contacts .badge{color:var(--white);}
+  #contacts .badge{background:rgba(255,255,255,.12);}
+  .contacts-grid{display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:center;}
+  @media(max-width:900px){.contacts-grid{grid-template-columns:1fr;}}
+  .contact-line{display:flex; gap:.9rem; align-items:flex-start; margin-bottom:1.3rem; font-size:1.05rem;}
+  .contact-line i{color:var(--gold); font-size:1.25rem; margin-top:.15rem;}
+  .contact-label{font-weight:600; margin-right:.35rem; opacity:.75;}
+  .contact-link{text-decoration:none; border-bottom:1px solid rgba(255,255,255,.3); transition:border-color .2s;}
+  .contact-link:hover{border-color:var(--gold);}
+  .map-frame{border-radius:20px; overflow:hidden; min-height:280px; box-shadow:var(--shadow-lift);}
+  .map-frame iframe{width:100%; height:100%; min-height:280px; border:0; display:block;}
+
+  /* ---------- Footer ---------- */
+  footer{padding:3rem 0 2rem; text-align:center;}
+  footer .brand-line{font-family:'Sora',sans-serif; font-weight:700; color:var(--green-dark); margin-bottom:1rem;}
+  .social{display:flex; justify-content:center; gap:.7rem;}
+  .social a{
+    color:var(--green-dark); width:38px; height:38px; border-radius:50%; background:var(--white); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; text-decoration:none; transition:background .2s, color .2s;
+  }
+  .social a:hover{background:var(--green-dark); color:var(--white);}
+  footer .copy{margin-top:1.1rem; font-size:.85rem; color:var(--muted);}
+
+  /* Reveal on scroll */
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.visible{opacity:1; transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    .hero-media .bg-slide{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="wrap nav-row">
+    <a href="#home" class="brand">
+      <img src="img/JekoviLogoFinal.png" alt="Жекови-Тенево ЕООД" />
+      <span class="brand-text" data-i18n="title">Жекови-Тенево ЕООД</span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav class="links" id="navLinks">
+      <a class="nav-link" href="#home" data-i18n="navHome">Начало</a>
+      <a class="nav-link" href="#about" data-i18n="navAbout">За нас</a>
+      <a class="nav-link" href="#services" data-i18n="navServices">Услуги</a>
+      <a class="nav-link" href="#products" data-i18n="navProducts">Продукти</a>
+      <a class="nav-link" href="#contacts" data-i18n="navContacts">Контакти</a>
+      <button class="lang-btn" id="langBtn" onclick="switchLanguage()">EN</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HOME -->
+  <section id="home">
+    <div class="wrap hero-wrap">
+      <div class="hero-text">
+        <h1 data-i18n="title">Жекови-Тенево ЕООД</h1>
+        <p data-i18n="subheadline">Съвременно земеделие и качество от Ямболския регион</p>
+        <a href="#contacts" class="btn-primary" data-i18n="heroBtn">Свържете се с нас</a>
+      </div>
+      <div class="hero-media">
+        <div class="bg-slide active" style="background-image:url('img/213_wheat_fields.jpg');"></div>
+        <div class="bg-slide" style="background-image:url('img/20160607_115004.jpg');"></div>
+        <div class="bg-slide" style="background-image:url('img/20160607_110507.jpg');"></div>
+        <div class="hero-chip">
+          <span class="num" data-i18n="stat1">40 000+</span>
+          <span class="lbl" data-i18n="statLabel1">декара обработваема земя</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="badge" data-i18n="aboutBadge">Кои сме ние</span>
+          <h2 class="section-title" data-i18n="aboutTitle">За нас</h2>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat">
+          <span class="stat-num" data-i18n="stat1">40 000+</span>
+          <span class="stat-label" data-i18n="statLabel1">декара обработваема земя</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-i18n="stat2">30+</span>
+          <span class="stat-label" data-i18n="statLabel2">служители</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num" data-i18n="stat3">Тенево, Маломир</span>
+          <span class="stat-label" data-i18n="statLabel3">бази и складове</span>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div>
+          <div class="about-block">
+            <h3><i class="bi bi-building"></i><span data-i18n="aboutCompanyTitle">За фирмата</span></h3>
+            <p data-i18n="aboutText">Фирма „Жекови-Тенево“ ЕООД се занимава с производство и търговия със селскостопански култури в община Тунджа, област Ямбол. Наемаме над 40 000 декара земеделска земя в села като Тенево и Маломир.</p>
+          </div>
+          <div class="about-block">
+            <h3><i class="bi bi-flower1"></i><span data-i18n="aboutProductionTitle">Производство</span></h3>
+            <p data-i18n="aboutProductionText">Основна дейност е производство и продажба на зърнени култури: пшеница, рапица, ечемик, овес, слънчоглед, царевица и други.</p>
+          </div>
+          <div class="about-block">
+            <h3><i class="bi bi-bullseye"></i><span data-i18n="aboutVisionTitle">Нашата визия</span></h3>
+            <p data-i18n="aboutVisionText">Продължаваме да увеличаваме обработваемата земя и да консолидираме земеделското производство в големи блокове за оптимална ефективност.</p>
+          </div>
+        </div>
+        <div class="about-media">
+          <img src="img/20160607_115004.jpg" alt="Жекови-Тенево — полета" />
+          <ul class="highlights">
+            <li><i class="bi bi-check-circle-fill"></i><span data-i18n="highlight1">Добре обучен екип от агрономи и оператори</span></li>
+            <li><i class="bi bi-check-circle-fill"></i><span data-i18n="highlight2">Съвременна селскостопанска техника и оборудване</span></li>
+            <li><i class="bi bi-check-circle-fill"></i><span data-i18n="highlight3">Бази и складове в село Тенево и Маломир</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="badge" data-i18n="servicesBadge">Какво правим</span>
+          <h2 class="section-title" data-i18n="servicesTitle">Нашите услуги</h2>
+        </div>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <i class="bi bi-gear"></i>
+          <h3 data-i18n="service1Title">Производство</h3>
+          <p data-i18n="service1Text">Професионално производство на зърнени и земеделски култури с високо качество.</p>
+        </div>
+        <div class="card">
+          <i class="bi bi-people"></i>
+          <h3 data-i18n="service2Title">Консултации</h3>
+          <p data-i18n="service2Text">Агрономически съвети и консултации за земеделски производители.</p>
+        </div>
+        <div class="card">
+          <i class="bi bi-truck"></i>
+          <h3 data-i18n="service3Title">Логистика</h3>
+          <p data-i18n="service3Text">Транспорт и складиране на селскостопанска продукция.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section id="products" class="reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="badge" data-i18n="productsBadge">Реколтата ни</span>
+          <h2 class="section-title" data-i18n="productsTitle">Продукти</h2>
+        </div>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <i class="bi bi-basket"></i>
+          <h3 data-i18n="product1Title">Зърнени култури</h3>
+          <p data-i18n="product1Text">Пшеница, ечемик, рапица, овес и други качествени зърнени култури.</p>
+        </div>
+        <div class="card">
+          <i class="bi bi-flower1"></i>
+          <h3 data-i18n="product2Title">Био земеделие</h3>
+          <p data-i18n="product2Text">Сертифицирано биологично производство, свободно от синтетични торове и пестициди.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTS -->
+  <section id="contacts" class="reveal">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <span class="badge" data-i18n="contactsBadge">Свържете се</span>
+          <h2 class="section-title" data-i18n="contactsTitle">Контакти</h2>
+        </div>
+      </div>
+      <div class="contacts-grid">
+        <div>
+          <div class="contact-line"><i class="bi bi-geo-alt"></i><span><span class="contact-label" data-i18n="contactsAddressLabel">Адрес:</span><span data-i18n="contactsAddress">Ямбол, ул. „Крали Марко“ 132</span></span></div>
+          <div class="contact-line"><i class="bi bi-telephone"></i><span><span class="contact-label" data-i18n="contactsPhoneLabel">Тел.:</span><a href="tel:046665001" class="contact-link">046 665 001</a></span></div>
+          <div class="contact-line"><i class="bi bi-envelope"></i><span><span class="contact-label" data-i18n="contactsEmailLabel">Имейл:</span><a href="mailto:jekovitenevo@gmail.com" class="contact-link">jekovitenevo@gmail.com</a></span></div>
+        </div>
+        <div class="map-frame">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3877.4536165959335!2d26.515229512493253!3d42.47935707106189!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a635224f5bbb37%3A0x581fd34933f10a9f!2z0JbQtdC60L7QstC4IC0g0KLQtdC90LXQstC-INCV0J7QntCU!5e1!3m2!1sen!2sbg!4v1752687654186!5m2!1sen!2sbg"
+            allowfullscreen="true" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="brand-line" data-i18n="title">Жекови-Тенево ЕООД</div>
+    <div class="social">
+      <!--<a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>-->
+      <a href="https://www.instagram.com/jekovitenevo" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+      <a href="mailto:jekovitenevo@gmail.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
+    </div>
+    <div class="copy">&copy; <span id="footer-year"></span> <span data-i18n="title">Жекови-Тенево ЕООД</span></div>
+  </div>
+</footer>
+
+<script>
+/* ---------------- Translations ---------------- */
+const dict = {
+  bg: {
+    docTitle: "Жекови-Тенево ЕООД | Земеделие в Ямболска област",
+    title: "Жекови-Тенево ЕООД",
+    subheadline: "Съвременно земеделие и качество от Ямболския регион",
+    heroBtn: "Свържете се с нас",
+    navHome: "Начало", navAbout: "За нас", navServices: "Услуги", navProducts: "Продукти", navContacts: "Контакти",
+    aboutBadge: "Кои сме ние",
+    aboutTitle: "За нас",
+    stat1: "40 000+", statLabel1: "декара обработваема земя",
+    stat2: "30+", statLabel2: "служители",
+    stat3: "Тенево, Маломир", statLabel3: "бази и складове",
+    aboutCompanyTitle: "За фирмата",
+    aboutText: "Фирма „Жекови-Тенево“ ЕООД се занимава с производство и търговия със селскостопански култури в община Тунджа, област Ямбол. Наемаме над 40 000 декара земеделска земя в села като Тенево и Маломир.",
+    aboutProductionTitle: "Производство",
+    aboutProductionText: "Основна дейност е производство и продажба на зърнени култури: пшеница, рапица, ечемик, овес, слънчоглед, царевица и други.",
+    aboutVisionTitle: "Нашата визия",
+    aboutVisionText: "Продължаваме да увеличаваме обработваемата земя и да консолидираме земеделското производство в големи блокове за оптимална ефективност.",
+    highlight1: "Добре обучен екип от агрономи и оператори",
+    highlight2: "Съвременна селскостопанска техника и оборудване",
+    highlight3: "Бази и складове в село Тенево и Маломир",
+    servicesBadge: "Какво правим",
+    servicesTitle: "Нашите услуги",
+    service1Title: "Производство", service1Text: "Професионално производство на зърнени и земеделски култури с високо качество.",
+    service2Title: "Консултации", service2Text: "Агрономически съвети и консултации за земеделски производители.",
+    service3Title: "Логистика", service3Text: "Транспорт и складиране на селскостопанска продукция.",
+    productsBadge: "Реколтата ни",
+    productsTitle: "Продукти",
+    product1Title: "Зърнени култури", product1Text: "Пшеница, ечемик, рапица, овес и други качествени зърнени култури.",
+    product2Title: "Био земеделие", product2Text: "Сертифицирано биологично производство, свободно от синтетични торове и пестициди.",
+    contactsBadge: "Свържете се",
+    contactsTitle: "Контакти",
+    contactsAddressLabel: "Адрес:", contactsAddress: "Ямбол, ул. „Крали Марко“ 132",
+    contactsPhoneLabel: "Тел.:", contactsEmailLabel: "Имейл:",
+    langToggle: "EN"
+  },
+  en: {
+    docTitle: "Zhekovi-Tenevo Ltd. | Farming in the Yambol Region",
+    title: "Zhekovi-Tenevo Ltd.",
+    subheadline: "Modern agriculture and quality from the Yambol region",
+    heroBtn: "Get in touch",
+    navHome: "Home", navAbout: "About", navServices: "Services", navProducts: "Products", navContacts: "Contact",
+    aboutBadge: "Who we are",
+    aboutTitle: "About us",
+    stat1: "40,000+", statLabel1: "decares of farmland",
+    stat2: "30+", statLabel2: "employees",
+    stat3: "Tenevo, Malomir", statLabel3: "bases & storage",
+    aboutCompanyTitle: "The company",
+    aboutText: "Zhekovi-Tenevo Ltd. produces and trades agricultural crops in the Tundzha municipality, Yambol region. We farm over 40,000 decares of land across villages including Tenevo and Malomir.",
+    aboutProductionTitle: "Production",
+    aboutProductionText: "Our main activity is growing and selling grain crops: wheat, rapeseed, barley, oats, sunflower, corn and others.",
+    aboutVisionTitle: "Our vision",
+    aboutVisionText: "We continue to expand our cultivated land and consolidate production into large, efficient blocks.",
+    highlight1: "A well-trained team of agronomists and operators",
+    highlight2: "Modern agricultural machinery and equipment",
+    highlight3: "Bases and warehouses in Tenevo and Malomir",
+    servicesBadge: "What we do",
+    servicesTitle: "Our services",
+    service1Title: "Production", service1Text: "Professional, high-quality production of grain and agricultural crops.",
+    service2Title: "Consulting", service2Text: "Agronomic advice and consulting for farmers.",
+    service3Title: "Logistics", service3Text: "Transport and storage of agricultural produce.",
+    productsBadge: "Our harvest",
+    productsTitle: "Products",
+    product1Title: "Grain crops", product1Text: "Wheat, barley, rapeseed, oats and other quality grain crops.",
+    product2Title: "Organic farming", product2Text: "Certified organic production, free of synthetic fertilizers and pesticides.",
+    contactsBadge: "Get in touch",
+    contactsTitle: "Contact",
+    contactsAddressLabel: "Address:", contactsAddress: "132 Krali Marko St, Yambol, Bulgaria",
+    contactsPhoneLabel: "Phone:", contactsEmailLabel: "Email:",
+    langToggle: "BG"
+  }
+};
+
+let currentLang = "bg";
+
+function applyLanguage(lang){
+  const t = dict[lang];
+  document.documentElement.lang = lang;
+  document.getElementById("doc-title").textContent = t.docTitle;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key = el.getAttribute("data-i18n");
+    if (t[key] !== undefined) el.textContent = t[key];
+  });
+  document.getElementById("langBtn").textContent = t.langToggle;
+}
+
+function switchLanguage(){
+  currentLang = currentLang === "bg" ? "en" : "bg";
+  applyLanguage(currentLang);
+}
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  applyLanguage(currentLang);
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+});
+
+/* ---------------- Header scroll state ---------------- */
+window.addEventListener('scroll', ()=>{
+  document.getElementById('site-header').classList.toggle('scrolled', window.scrollY > 30);
+});
+
+/* ---------------- Mobile menu ---------------- */
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+menuToggle.addEventListener('click', ()=>{
+  menuToggle.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+document.querySelectorAll('.nav-link').forEach(link=>{
+  link.addEventListener('click', (e)=>{
+    e.preventDefault();
+    menuToggle.classList.remove('open');
+    navLinks.classList.remove('open');
+    document.querySelector(link.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+  });
+});
+
+/* ---------------- Reveal on scroll ---------------- */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---------------- Hero background slideshow ---------------- */
+const slides = document.querySelectorAll('.hero-media .bg-slide');
+let slideIdx = 0;
+if (slides.length > 1){
+  setInterval(()=>{
+    slides[slideIdx].classList.remove('active');
+    slideIdx = (slideIdx + 1) % slides.length;
+    slides[slideIdx].classList.add('active');
+  }, 6000);
+}
+</script>
+
+</body>
+</html>
